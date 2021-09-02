@@ -1,0 +1,20 @@
+---
+import Styles from '../components/Styles.svelte'
+import Navbar from '../components/Navbar.svelte'
+import Hero from '../components/Hero.svelte'
+import ListStages from '../components/ListStages.svelte'
+import Elementor from '../components/Elementor.svelte'
+---
+<html>
+  <head>
+    <Styles/>
+  </head>
+  <body>
+    <Navbar client:load />
+    <div class="homepage">
+      <Hero/>
+      <ListStages client:idle />
+      <Elementor client:visible />
+    </div>
+  </body>
+</html>

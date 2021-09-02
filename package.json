@@ -1,0 +1,19 @@
+{
+  "name": "astro-svelte-proto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/pages/index.astro",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/renderer-svelte": "0.1.1",
+    "astro": "*"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.4"
+  },
+  "keywords": []
+}
