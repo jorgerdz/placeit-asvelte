@@ -1,3 +1,32 @@
+<script>
+	import { onMount } from "svelte";
+	function loadJs(url) {
+	  var script = window.document.createElement("script");
+	  script.src = url;
+	  window.document.head.appendChild(script);
+	  console.log("loading js " + url);
+	}
+
+	function loadCss(url) {
+	  var link = document.createElement("link");
+	  link.type = "text/css";
+	  link.rel = "stylesheet";
+	  link.href = url;
+	  document.head.appendChild(link);
+	  console.log("loading css " + url);
+	}
+	let scriptSrc =
+	  "https://d1ozqqh7vh3ykm.cloudfront.net/custom-pages/2021-home-page/home_page.js";
+	let stylesheetSrc =
+	  "https://d1ozqqh7vh3ykm.cloudfront.net/custom-pages/2021-home-page/home_page.css";
+
+	onMount(() => {
+	  loadJs(scriptSrc);
+	  loadCss(stylesheetSrc);
+	});
+</script>
+
+
 <!-- Elementor part lifted straight from prod -->
 <div class="homepage-message lazy" data-src="https://d1ozqqh7vh3ykm.cloudfront.net/custom-pages/2021-home-page/home_page.css">
 	<div class="home-page-section lazy" data-src="https://d1ozqqh7vh3ykm.cloudfront.net/custom-pages/2021-home-page/home_page.js">
@@ -102,7 +131,5 @@
 		<button class="scrollToTopBtn showBtn">
 			<span></span>
 		</button>
-		<link rel="stylesheet" href="https://d1ozqqh7vh3ykm.cloudfront.net/custom-pages/2021-home-page/home_page.css">
-		<script src="https://d1ozqqh7vh3ykm.cloudfront.net/custom-pages/2021-home-page/home_page.js"></script>
 	</div>
 </div>
