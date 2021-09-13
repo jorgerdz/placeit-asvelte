@@ -1,3 +1,6 @@
+<script>
+</script>
+
 <div class="hero-banner">
 	<!-- FIXME: Is this img div necessary?-->
 	<img class="hidden" src="https://res.cloudinary.com/dhfr8kgzr/image/upload/f_auto,q_auto/v1621024500/hero-banner-small_nymmz8.jpg" />
