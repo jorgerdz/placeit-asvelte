@@ -1,0 +1,12 @@
+{
+  "billing": {
+    "cta": "Billing",
+    "modal": {
+      "card": "Card Number",
+      "cvv": "CVV",
+      "expiration": "Expiration Date",
+      "pay": "Pay",
+      "cancel": "Cancel"
+    }
+  }
+}

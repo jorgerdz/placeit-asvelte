@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { notifications } from "../stores/notifications.js";
+  import { _, isLoading } from "svelte-i18n";
 
   let modal;
   let card = {
@@ -31,9 +32,13 @@
     };
   });
 </script>
-
+{#if $isLoading}
+  Please wait...
+{:else}
 <div class="login-form">
-	<button on:click={showModal} style="width:auto;">Billing</button>
+	<button on:click={showModal} style="width:auto;">
+    {$_('billing.cta', { default: 'Billing' })}
+  </button>
 	<div bind:this={modal} class="modal">
 		<form class="modal-content animate" method="post" action="">
 			<div class="imgcontainer">
@@ -41,24 +46,25 @@
 			</div>
 
 			<div class="container">
-				<label for="cardNumber"><b>Card Number</b></label>
+				<label for="cardNumber"><b>{$_('billing.modal.card', { default: 'Card Number' })}</b></label>
 				<input type="text" placeholder="XXXX XXXX XXXX XXXX" name="cardNumber" bind:value={card.number} />
 
 				<label for="cvv"><b>CVV</b></label>
 				<input type="password" placeholder="XXX" name="cvv" required bind:value={card.cvv}>
 
-        				<label for="expiration"><b>Expiration date</b></label>
+        				<label for="expiration"><b>{$_('billing.modal.expiration', { default: 'Expiration Date' })}</b></label>
 				<input type="text" placeholder="XX/XX" name="expiration" required bind:value={card.expiration}>
 
-				<button type="button" on:click={pay}>Pay</button>
+				<button type="button" on:click={pay}>{$_('billing.modal.pay', { default: 'Pay' })}</button>
 			</div>
 
 			<div class="container" style="background-color:#f1f1f1">
-				<button type="button" on:click={hideModal} class="cancelbtn">Cancel</button>
+				<button type="button" on:click={hideModal} class="cancelbtn">{$_('billing.modal.cancel', { default: 'Cancel' })}</button>
 			</div>
 		</form>
 	</div>
 </div>
+{/if}
 
 <style>
   body {

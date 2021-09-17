@@ -1,0 +1,12 @@
+{
+  "billing": {
+    "cta": "Cobrança",
+    "modal": {
+      "card": "Número do Cartão",
+      "cvv": "CVV",
+      "expiration": "Data de Validade",
+      "pay": "Pagar",
+      "cancel": "Cancelar"
+    }
+  }
+}

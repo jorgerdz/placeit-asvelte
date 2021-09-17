@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@astrojs/renderer-svelte": "0.1.1",
-    "astro": "*"
+    "astro": "*",
+    "svelte-i18n": "3.3.10"
   },
   "devDependencies": {
     "nodemon": "1.18.4",
