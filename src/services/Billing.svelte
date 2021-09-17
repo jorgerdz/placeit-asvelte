@@ -1,7 +1,13 @@
 <script>
   import { onMount } from "svelte";
-  let modal = null;
-  let element = null;
+  import { notifications } from "../stores/notifications.js";
+
+  let modal;
+  let card = {
+    number: null,
+    cvv: null,
+    expiration: null
+  };
 
   function showModal() {
     modal.style.display = "block";
@@ -11,33 +17,12 @@
     modal.style.display = "none";
   }
 
-  function submitForm() {
-    if (!import.meta.env.SSR) console.log("SSR");
-    console.log("form submitted");
-    var formElement = document.getElementsByTagName("form")[0],
-      inputElements = formElement.getElementsByTagName("input"),
-      jsonObject = {};
-    for (var i = 0; i < inputElements.length; i++) {
-      var inputElement = inputElements[i];
-      jsonObject[inputElement.name] = inputElement.value;
-    }
-    var body = JSON.stringify(jsonObject);
-    fetch(formElement.action, {
-      method: "POST",
-      body: body, // data can be `string` or {object}!
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    return false;
+  function pay() {
+    console.log("paying with " + JSON.stringify(card));
+    notifications.warning("Your payment method failed, try again later.", 5000);
   }
 
   onMount(() => {
-    console.log("component mounted");
-
-    // Get the modal
-    modal = document.getElementById("id01");
-
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
       if (event.target == modal) {
@@ -48,30 +33,28 @@
 </script>
 
 <div class="login-form">
-	<button on:click={showModal} style="width:auto;">Login</button>
-	<div id="id01" class="modal">
-		<form class="modal-content animate" action="https://buildingmfe.maxgallo.io/api/login" method="post">
+	<button on:click={showModal} style="width:auto;">Billing</button>
+	<div bind:this={modal} class="modal">
+		<form class="modal-content animate" method="post" action="">
 			<div class="imgcontainer">
 				<span on:click={hideModal} class="close" title="Close Modal">&times;</span>
-				<img src="img_avatar2.png" alt="Login" class="avatar">
 			</div>
 
 			<div class="container">
-				<label for="uname"><b>Username</b></label>
-				<input type="text" placeholder="Enter Username" name="username" />
+				<label for="cardNumber"><b>Card Number</b></label>
+				<input type="text" placeholder="XXXX XXXX XXXX XXXX" name="cardNumber" bind:value={card.number} />
 
-				<label for="psw"><b>Password</b></label>
-				<input type="password" placeholder="Enter Password" name="password" required>
+				<label for="cvv"><b>CVV</b></label>
+				<input type="password" placeholder="XXX" name="cvv" required bind:value={card.cvv}>
 
-				<button type="button" on:click={submitForm}>Login</button>
-				<label>
-					<input type="checkbox" checked="checked" name="remember" /> Remember me
-				</label>
+        				<label for="expiration"><b>Expiration date</b></label>
+				<input type="text" placeholder="XX/XX" name="expiration" required bind:value={card.expiration}>
+
+				<button type="button" on:click={pay}>Pay</button>
 			</div>
 
 			<div class="container" style="background-color:#f1f1f1">
 				<button type="button" on:click={hideModal} class="cancelbtn">Cancel</button>
-				<span class="psw">Forgot <a href="#">password?</a></span>
 			</div>
 		</form>
 	</div>

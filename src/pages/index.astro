@@ -6,6 +6,9 @@ import ListStages from '../components/ListStages.svelte'
 import Elementor from '../components/Elementor.svelte'
 import Tags from '../components/Tags.svelte'
 import LoginForm from '../components/LoginForm.svelte'
+import Toast from '../components/Toast.svelte'
+import BillingService from '../services/Billing.svelte'
+
 ---
 <html>
   <head>
@@ -14,12 +17,14 @@ import LoginForm from '../components/LoginForm.svelte'
   </head>
   <body>
 
-    <Navbar client:idle />
+    <Navbar client:idle  />
     <div class="homepage">
       <Hero />
       <ListStages client:visible />
       <Elementor client:visible />
       <LoginForm client:load />
     </div>
+    <Toast client:idle />
+    <BillingService client:idle />
   </body>
 </html>
